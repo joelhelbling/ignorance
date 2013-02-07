@@ -1,4 +1,4 @@
-# Ignant
+# Ignorance
 
 Ensures specified files are ignored by Git or SVN
 
@@ -6,7 +6,7 @@ Ensures specified files are ignored by Git or SVN
 
 Add this line to your application's Gemfile:
 
-    gem 'ignant'
+    gem 'ignorance'
 
 And then execute:
 
@@ -14,7 +14,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install ignant
+    $ gem install ignorance
 
 ## Usage
 
@@ -24,7 +24,7 @@ your runtime to warn users to add those artifacts to the project's
 ignore file:
 
 ```ruby
-include Ignant
+include Ignorance
 
 guard_ignorance %w[ .myfile mydir/ ]
 ```
@@ -53,7 +53,7 @@ add the pertinent files to the ignore file:
 interactive_ignorance! %w[ .myfile mydir/ ]
 ```
 
-Ignant does nothing when one of two conditions exist:
+Ignorance does nothing when one of two conditions exist:
 
 1. All specified files and directories are already ignored
 2. The current directory is not a Git repository
