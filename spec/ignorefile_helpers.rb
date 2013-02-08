@@ -17,4 +17,9 @@ module IgnorefileHelpers
   def ignorefile_contents
     File.read(ignore_file)
   end
+
+  def mk_repo_dir
+    Dir.mkdir repo_dir
+  end
+
 end
