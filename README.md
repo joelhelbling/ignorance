@@ -1,6 +1,10 @@
+*CAVEAT EMPTOR:*  _this project is a work in progress.  It's coming along
+nicely (thank you!) but it still lacks a front-end.  Stay tuned, as Ignorance
+is just about to drop the bass._
+
 # Ignorance
 
-Ensures specified files are ignored by Git or SVN
+Ensures specified files are ignored by Git, Mercurial or SVN
 
 ## Installation
 
@@ -50,7 +54,7 @@ And finally, you can even prompt the user, offering to automatically
 add the pertinent files to the ignore file:
 
 ```
-interactive_ignorance! %w[ .myfile mydir/ ]
+guard_ignorance_interactive %w[ .myfile mydir/ ]
 ```
 
 Ignorance does nothing when one of two conditions exist:
@@ -58,8 +62,9 @@ Ignorance does nothing when one of two conditions exist:
 1. All specified files and directories are already ignored
 2. The current directory is not a Git repository
 
-SVN is also supported.  If .git is present, .gitignore is managed.  If
-.svn is present, then .svnignore is managed.
+SVN is also supported.  If .git is present, .gitignore is managed.
+If .hg then .hgignore, if .svn, .svnignore.  If none of these VCS'
+are present, then Ignorance does nothing.
 
 ## Contributing
 
