@@ -5,7 +5,7 @@ module Ignorance
   describe GitIgnoreFile, :fakefs do
 
     let(:ignore_file) { '.gitignore' }
-    let(:repo_dir) { '.git' }
+    let(:repo_dir)    { '.git'       }
 
     it_should_behave_like "an ignore file"
 
