@@ -1,6 +1,10 @@
 module Ignorance
   class IgnoreFile
 
+    def name
+      ignore_file
+    end
+
     def exists?
       File.exists? ignore_file
     end

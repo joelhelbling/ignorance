@@ -5,7 +5,7 @@ require 'ignorance/git_ignore_file'
 module Ignorance
   describe IgnoreFile do
 
-    it { should respond_to :exists?, :its_a_repo?, :ignored?, :ignore! }
+    it { should respond_to :name, :exists?, :its_a_repo?, :ignored?, :ignore! }
 
   end
 end

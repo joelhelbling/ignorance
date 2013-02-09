@@ -1,7 +1,8 @@
 module Ignorance
   shared_examples "an ignore file" do
 
-    it { should respond_to :exists?, :its_a_repo?, :ignored?, :ignore! }
+    it { should respond_to :name, :exists?, :its_a_repo?, :ignored?, :ignore! }
+    its(:name) { should == ignore_file }
 
     describe "#exists?" do
 
