@@ -2,22 +2,31 @@ require 'stringio'
 
 module IOHelpers
 
-  def stdout_from
-    out = StringIO.new
-    $stdout = out
+  def output_from
+    $stdout = $stderr = fake_io
     yield
-    return out.string.chomp
+    fake_io.string
   ensure
-    $stdout = STDOUT
+    $stdout = STDOUT; $stderr = STDERR
   end
 
-  def stderr_from
-    err = StringIO.new
-    $stderr = err
-    yield
-    return err.string.chomp
+  def user_types(input, &block)
+    $stdin = StringIO.new input
+    output_from &block
   ensure
-    $stderr = STDERR
+    $stdin = STDIN
+  end
+
+  def stdout_from(&block)
+    output_from &block
+  end
+
+  def stderr_from(&block)
+    output_from &block
+  end
+
+  def fake_io
+    @fake_io ||= StringIO.new
   end
 
 end
