@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/joelhelbling/ignorance.png)](https://travis-ci.org/joelhelbling/ignorance)
+
 # Ignorance
 
 Ensures specified files are ignored by Git, Mercurial or SVN.
