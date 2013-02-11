@@ -36,7 +36,7 @@ include Ignorance
 advise_ignorance '.myfile'
 ```
 
-Assuming those files are not in the project's .gitignore file, when
+Assuming those files are not already in the project's ignore file, when
 the code is run, your program will output the following to STDERR
 (but not halt):
 
@@ -64,7 +64,7 @@ tokens to the project's ignore file:
 guarantee_ignorance! 'mydir/'
 ```
 
-You can also use Ignorance directly (with out including the module).
+You can also use Ignorance directly (without including the module).
 Shorter method names are provided for that purpose:
 
 ```ruby
@@ -123,7 +123,7 @@ secret_info.txt
 
 ```
 
-The above example would result in this in the ignore file:
+The above example would result in this:
 
 ```
 # added by HandyBankUtil
@@ -144,8 +144,8 @@ api_token.yml
 
 Here's some stuff I ain't figured out yet:
 
-- *Support for globs & regexes*: If you `gaurd_ignorance 'myfile.private'` and
+- **Support for globs & regexes:** If you `advise_ignorance 'myfile.private'` and
   the ignore file contains a glob or regex which would cause that to be ignored,
-  Ignorance will raise an error anyway.
-- *Support for other version control systems.*  Visual SourceSafe can't use
+  Ignorance will warn anyway.
+- **Support for other version control systems.**  Visual SourceSafe can't use
   Ignorance.  Does that seem right to you?
