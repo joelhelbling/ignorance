@@ -132,6 +132,10 @@ api_token.yml
 
 ```
 
+## Supported Operating Systems
+
+Ignorance has been found to work on OSX, Ubuntu and Windows 7.
+
 ## Contributing
 
 1. Fork it
