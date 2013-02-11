@@ -8,9 +8,9 @@ Gem::Specification.new do |gem|
   gem.version       = Ignorance::VERSION
   gem.authors       = ["Joel Helbling"]
   gem.email         = ["joel@joelhelbling.com"]
-  gem.description   = %q{Willfully .gitignore specified files}
-  gem.summary       = %q{Programmatically ensure certain files in a project are ignored by version control.  Git and SVN are supported.}
-  gem.homepage      = ""
+  gem.description   = %q{Ensures specified files are ignored by Git, Mercurial or SVN.}
+  gem.summary       = %q{Ignorance helps your code be considerate of its users by protecting sensitive information from version control.}
+  gem.homepage      = "http://github.com/joelhelbling/ignorance"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
