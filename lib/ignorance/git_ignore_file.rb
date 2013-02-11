@@ -1,8 +1,11 @@
 require 'ignorance/ignore_file'
+require 'ignorance/project_oriented_vcs'
 
 module Ignorance
   class GitIgnoreFile < IgnoreFile
     attr_reader :ignore_file, :repo_dir
+
+    include ProjectOrientedVCS
 
     def initialize
       @ignore_file = '.gitignore'
@@ -12,7 +15,9 @@ module Ignorance
     private
 
     def ignored
-      (file_contents + user_ignore_file_contents).reject{ |t| t.match /^\#/ }.map(&:chomp)
+      (file_contents + user_ignore_file_contents).reject do |t|
+        t.match /^\#/
+      end.map(&:chomp)
     end
 
     def user_ignore_file_contents

@@ -8,6 +8,7 @@ module Ignorance
     let(:repo_dir)    { '.git'       }
 
     it_should_behave_like "an ignore file"
+    it_should_behave_like "a project-oriented VCS"
 
     context "when the user's gitignore file includes the token" do
       let(:token) { "foofile.md" }
@@ -25,5 +26,6 @@ module Ignorance
         subject.ignored?(token).should be_true
       end
     end
+
   end
 end
