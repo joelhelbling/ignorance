@@ -8,17 +8,13 @@ require 'ignorance/svn_ignore_file'
 module Ignorance
 
   class << self
-    def advise(token, comment=nil)
+    def advise(token)
       active_ignore_files.each do |ignore_file|
         warning token, ignore_file unless ignore_file.ignored?(token)
       end
     end
 
-    def warning(token, ignore_file)
-      warn "WARNING: please add \"#{token}\" to this project's #{ignore_file.name} file!"
-    end
-
-    def guard(token, comment=nil)
+    def guard(token)
       active_ignore_files.each do |ignore_file|
         unless ignore_file.ignored?(token)
           raise IgnorefileError.new "Please add \"#{token}\" to this project's #{ignore_file.name} file!"
@@ -48,6 +44,12 @@ module Ignorance
       end
     end
 
+    private
+
+    def warning(token, ignore_file)
+      warn "WARNING: please add \"#{token}\" to this project's #{ignore_file.name} file!"
+    end
+
     def active_ignore_files
       ignore_files.select(&:its_a_repo?)
     end
@@ -62,20 +64,20 @@ module Ignorance
 
   end
 
-  def advise_ignorance
-
+  def advise_ignorance(token)
+    Ignorance.advise token, comment
   end
 
-  def guard_ignorance
-
+  def guard_ignorance(token)
+    Ignorance.guard token, comment
   end
 
-  def negotiate_ignorance
-
+  def negotiate_ignorance(token, comment=nil)
+    Ignorance.negotiate token, comment
   end
 
-  def guarantee_ignorance!
-
+  def guarantee_ignorance!(token, comment=nil)
+    Ignorance.guarantee! token, comment
   end
 
   class IgnorefileError < IOError; end
