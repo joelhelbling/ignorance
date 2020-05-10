@@ -1,3 +1,4 @@
+require 'pp'
 require 'fakefs/spec_helpers'
 require File.join(File.dirname(__FILE__), 'ignorefile_helpers')
 require File.join(File.dirname(__FILE__), 'io_helpers')

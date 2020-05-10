@@ -15,6 +15,7 @@ module Ignorance
       let(:user_ignore_file) { '~/.gitignore' }
       before do
         ignorefile_write %w[other stuff here].join("\n")
+        Dir.mkdir('~/')
         File.open(user_ignore_file, 'w') do |fh|
           fh.write "#{token}\n"
         end
@@ -23,7 +24,7 @@ module Ignorance
 
       specify "then the file is ignored" do
         File.read('~/.gitignore').should match(/#{token}/)
-        subject.ignored?(token).should be_true
+        subject.ignored?(token).should be_truthy
       end
     end
 
