@@ -23,12 +23,16 @@ module Ignorance
     describe "#its_a_repo?" do
 
       context "when the repo subdirectory does NOT exist" do
-        it { should_not be_its_a_repo }
+        it "is not a repo" do
+          expect(subject).to_not be_its_a_repo
+        end
       end
 
       context "when the repo subdirectory DOES exist" do
         before { Dir.mkdir repo_dir   }
-        it     { should be_its_a_repo }
+        it "is a repo" do
+          expect(subject).to be_its_a_repo
+        end
       end
 
     end
@@ -38,8 +42,8 @@ module Ignorance
 
       context "when the ignore file doesn't exist" do
         specify "then the file is not ignored, duh" do
-          subject.should_not exist
-          subject.ignored?(token).should == false
+          expect(subject).to_not exist
+          expect(subject.ignored?(token)).to be_falsy
         end
       end
 
@@ -47,7 +51,9 @@ module Ignorance
 
         context "when the ignore file doesn't include the token" do
           before { ignorefile_write %w[other stuff here].join("\n") }
-          it     { should_not be_ignored(token)                    }
+          it "is not ignored" do
+            expect(subject).to_not be_ignored(token)
+          end
         end
 
         context "when the ignore file DOES include the token" do
@@ -64,18 +70,18 @@ module Ignorance
 
       context "there is no ignore file" do
         it "writes to the ignore file" do
-          subject.should_not exist
+          expect(subject).to_not exist
           subject.ignore! token
-          ignored_tokens.should include token
+          expect(ignored_tokens).to include(token)
         end
       end
 
       context "there is already an ignore file" do
         before { ignorefile_write "*.swp\n" }
         specify do
-          ignored_tokens.should include '*.swp'
+          expect(ignored_tokens).to include('*.swp')
           subject.ignore! token
-          ignored_tokens.should include '*.swp'
+          expect(ignored_tokens).to include('*.swp')
         end
       end
 
@@ -84,9 +90,9 @@ module Ignorance
         before { ignorefile_write content }
 
         it "doesn't write to the ignore file" do
-          File.any_instance.should_not_receive(:write)
+          expect_any_instance_of(File).to_not receive(:write)
           subject.ignore!(token)
-          ignored_tokens.should include token
+          expect(ignored_tokens).to include(token)
         end
       end
 
@@ -94,7 +100,7 @@ module Ignorance
         context "when the comment wasn't already in the file" do
           specify do
             subject.ignore! token, "# hide these files!"
-            ignorefile_contents.should match(/# hide these files!\n#{token}\n/)
+            expect(ignorefile_contents).to match(/# hide these files!\n#{token}\n/)
           end
         end
 
@@ -106,7 +112,7 @@ module Ignorance
 
             specify do
               subject.ignore! token, comment
-              ignorefile_contents.should match(/# #{comment}\n#{token}\n/)
+              expect(ignorefile_contents).to match(/# #{comment}\n#{token}\n/)
             end
           end
 
@@ -123,7 +129,7 @@ other-things
 
             specify do
               subject.ignore! token, comment
-              ignorefile_contents.should match expected
+              expect(ignorefile_contents).to match(expected)
             end
           end
 
@@ -138,7 +144,7 @@ barfile.md
 
             specify do
               subject.ignore! token, comment
-              ignorefile_contents.should match expected
+              expect(ignorefile_contents).to match(expected)
             end
           end
         end

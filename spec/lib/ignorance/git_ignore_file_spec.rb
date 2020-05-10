@@ -19,12 +19,11 @@ module Ignorance
         File.open(user_ignore_file, 'w') do |fh|
           fh.write "#{token}\n"
         end
-        subject.stub(:user_ignore_file).and_return(user_ignore_file)
       end
 
       specify "then the file is ignored" do
-        File.read('~/.gitignore').should match(/#{token}/)
-        subject.ignored?(token).should be_truthy
+        expect(File.read('~/.gitignore')).to match(/#{token}/)
+        expect(subject).to be_ignored(token)
       end
     end
 
