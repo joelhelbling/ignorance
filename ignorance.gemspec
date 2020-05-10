@@ -17,7 +17,7 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
-  gem.add_dependency 'highline', '~> 1.6.15'
+  gem.add_dependency 'highline', '~> 2.0'
 
   gem.add_development_dependency 'rspec',   '~> 3.9'
   gem.add_development_dependency 'fakefs',  '~> 1.2'
