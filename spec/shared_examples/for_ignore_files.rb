@@ -92,7 +92,7 @@ module Ignorance
         context "when the comment wasn't already in the file" do
           specify do
             subject.ignore! token, "# hide these files!"
-            ignorefile_contents.should match /# hide these files!\n#{token}\n/
+            ignorefile_contents.should match(/# hide these files!\n#{token}\n/)
           end
         end
 
@@ -104,7 +104,7 @@ module Ignorance
 
             specify do
               subject.ignore! token, comment
-              ignorefile_contents.should match /# #{comment}\n#{token}\n/
+              ignorefile_contents.should match(/# #{comment}\n#{token}\n/)
             end
           end
 
@@ -117,7 +117,7 @@ barfile.md
 other-things
               IGNORE
             end
-            let(:expected) { Regexp.new /# #{comment}\nbarfile\.md\n#{token}\n\nother-things/ }
+            let(:expected) { Regexp.new(/# #{comment}\nbarfile\.md\n#{token}\n\nother-things/) }
 
             specify do
               subject.ignore! token, comment
@@ -132,7 +132,7 @@ other-things
 barfile.md
               IGNORE
             end
-            let(:expected) { Regexp.new /# #{comment}\nbarfile\.md\n#{token}\n/ }
+            let(:expected) { Regexp.new(/# #{comment}\nbarfile\.md\n#{token}\n/) }
 
             specify do
               subject.ignore! token, comment

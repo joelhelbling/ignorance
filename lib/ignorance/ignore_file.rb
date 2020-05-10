@@ -18,14 +18,14 @@ module Ignorance
     end
 
     def included?(token)
-      file_contents.include? token
+      file_contents.include?(token)
     end
 
     def ignore!(token, comment=nil)
       return true if ignored?(token)
       if comment
         anchor = commentified comment
-        if included? anchor
+        if included?(anchor)
           insert_after anchor, token
         else
           append "\n"
@@ -42,11 +42,11 @@ module Ignorance
     private
 
     def ignored
-      file_contents.reject{ |t| t.match /^\#/ }.map(&:chomp)
+      file_contents.reject{ |t| t.match(/^\#/) }.map(&:chomp)
     end
 
     def file_contents
-      @file_contents ||= exists? ? File.readlines(ignore_file) : []
+      @file_contents ||= exists? ? File.readlines(ignore_file).map{|line| line.chomp} : []
     end
 
     def insert_at(index, token)
@@ -72,7 +72,7 @@ module Ignorance
     end
 
     def blank_line_at?(insert_index)
-      file_contents[insert_index].match(/^[\s\n]*$/)
+      file_contents[insert_index].match(/^[\s]*$/)
     end
 
     def commentified(comment)

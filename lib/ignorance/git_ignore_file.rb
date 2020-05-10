@@ -16,7 +16,7 @@ module Ignorance
 
     def ignored
       (file_contents + user_ignore_file_contents).reject do |t|
-        t.match /^\#/
+        t.match(/^\#/)
       end.map(&:chomp)
     end
 

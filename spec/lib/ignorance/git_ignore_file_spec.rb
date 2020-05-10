@@ -22,7 +22,7 @@ module Ignorance
       end
 
       specify "then the file is ignored" do
-        File.read('~/.gitignore').should match /#{token}/
+        File.read('~/.gitignore').should match(/#{token}/)
         subject.ignored?(token).should be_true
       end
     end
