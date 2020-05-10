@@ -22,5 +22,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'rspec',   '~> 3.9'
   gem.add_development_dependency 'fakefs',  '~> 1.2'
   gem.add_development_dependency 'rake',    '13.0.1'
-  gem.add_development_dependency 'pry',     '~> 0.9.11.4'
+  gem.add_development_dependency 'pry',     '~> 0.13'
 end
