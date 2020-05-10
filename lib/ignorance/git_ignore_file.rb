@@ -25,7 +25,7 @@ module Ignorance
     end
 
     def user_ignore_file
-      @user_ignore_file ||= `git config --global --get core.excludesfile`.chomp
+      @user_ignore_file ||= `git config --global --get core.excludesfile || echo '~/.gitignore'`.chomp
     end
 
   end
