@@ -18,7 +18,7 @@ shared_examples Ignorance do
         before { ignorefile_write "something-else.txt\n" }
 
         it "prints warn (STDERR)" do
-          expect( stderr_from { Ignorance.advise token } ).to match /WARNING:.*add "#{token}" to .*#{ignore_file}/
+          expect( stderr_from { Ignorance.advise token } ).to match(/WARNING:.*add "#{token}" to .*#{ignore_file}/)
         end
       end
     end
@@ -56,13 +56,13 @@ shared_examples Ignorance do
 
         context "user agrees (y)" do
           specify do
-            expect( user_types("y") { Ignorance.negotiate token } ).to match /added "#{token}"/i
+            expect( user_types("y") { Ignorance.negotiate token } ).to match(/added "#{token}"/i)
           end
         end
 
         context "user disagrees (n)" do
           specify do
-            expect( user_types("n") { Ignorance.negotiate token } ).to match /WARNING:.*add "#{token}" to .*#{ignore_file}/
+            expect( user_types("n") { Ignorance.negotiate token } ).to match(/WARNING:.*add "#{token}" to .*#{ignore_file}/)
           end
         end
       end
@@ -74,7 +74,7 @@ shared_examples Ignorance do
 
         it "does not change the ignore file" do
           Ignorance.guarantee! token, "a comment"
-          ignorefile_contents.should == "#{token}\n"
+          expect(ignorefile_contents).to eq("#{token}\n")
         end
       end
 
@@ -83,7 +83,7 @@ shared_examples Ignorance do
 
         it "adds to the ignore file" do
           Ignorance.guarantee! token, "a comment"
-          ignorefile_contents.should == "stuff.txt\n\n# a comment\n#{token}\n"
+          expect(ignorefile_contents).to eq("stuff.txt\n\n# a comment\n#{token}\n")
         end
       end
     end
